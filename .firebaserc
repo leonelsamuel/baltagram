@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "baltagram-5a765"
+    "default": "baltagram2-cca3a",
+    "y": "baltagram2-cca3a",
+    "testing": "baltagram2-cca3a"
   }
 }

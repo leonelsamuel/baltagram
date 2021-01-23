@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyD3-Gz7bvj99NP63PIgyWMNRKd4Q5meobs",
-    authDomain: "baltagram-5a765.firebaseapp.com",
-    databaseURL: "https://baltagram-5a765.firebaseio.com",
-    projectId: "baltagram-5a765",
-    storageBucket: "baltagram-5a765.appspot.com",
-    messagingSenderId: "424194333341",
-    appId: "1:424194333341:web:fc75bbd74367d5f3e3d274"
+    apiKey: "AIzaSyC4YdaS2PKenlSy6M-kfN77Er9dFFpo2dc",
+    authDomain: "baltagram2-cca3a.firebaseapp.com",
+    databaseURL: "https://baltagram2-cca3a-default-rtdb.firebaseio.com",
+    projectId: "baltagram2-cca3a",
+    storageBucket: "baltagram2-cca3a.appspot.com",
+    messagingSenderId: "132858518747",
+    appId: "1:132858518747:web:c66a1234594e8d854140fe",
+    measurementId: "G-H2WKJQWSNC"
   }
 };

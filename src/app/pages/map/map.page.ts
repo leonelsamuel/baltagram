@@ -15,7 +15,7 @@ export class MapPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
+    //  https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
     var html = '<iframe style="height: 100vh;" width="100%" height="99%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCpr0wVKEYDGm1hEHpS4pB9HVijsE9LTlU&origin=' + this.post.location + '&destination=' + this.post.location + '" allowfullscreen></iframe>';
     document.getElementById('map').innerHTML = html;
   }
