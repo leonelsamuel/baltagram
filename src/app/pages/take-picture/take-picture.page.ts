@@ -49,19 +49,16 @@ export class TakePicturePage implements OnInit {
   }
   async stop() {
     var video = <any>document.getElementById("video");
-    console.log(video);
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices
-        .getUserMedia({ video: { aspectRatio: 1 } })
-        .then(function (stream) {
-          video.srcObject = stream;
-          stream.getTracks().forEach(track => {
-            track.stop();
-          });
-        })
-        .catch(function (err) {
-          console.log(err);
+    navigator.mediaDevices
+      .getUserMedia({ video: { aspectRatio: 1 } })
+      .then(function (stream) {
+        video.srcObject = stream;
+        stream.getTracks().forEach((track) => {
+          track.stop();
         });
-    }
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 }
