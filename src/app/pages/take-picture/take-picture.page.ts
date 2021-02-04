@@ -1,27 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { ViewController } from '@ionic/core';
-import { Post } from 'src/app/models/post.model';
+import { createOfflineCompileUrlResolver } from "@angular/compiler";
+import { Component, OnInit } from "@angular/core";
+import { NavController } from "@ionic/angular";
+import { ViewController } from "@ionic/core";
+import { Post } from "src/app/models/post.model";
 
 @Component({
-  selector: 'app-take-picture',
-  templateUrl: './take-picture.page.html',
-  styleUrls: ['./take-picture.page.scss'],
+  selector: "app-take-picture",
+  templateUrl: "./take-picture.page.html",
+  styleUrls: ["./take-picture.page.scss"],
 })
 export class TakePicturePage implements OnInit {
-  constructor(
-    private navCtrl: NavController,
-  ) {
-  }
+  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    var video = <any>document.getElementById('video');
+    var video = <any>document.getElementById("video");
 
     if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: { aspectRatio: 1 } })
+      navigator.mediaDevices
+        .getUserMedia({ video: { aspectRatio: 1 } })
         .then(function (stream) {
           video.srcObject = stream;
         })
@@ -32,18 +30,38 @@ export class TakePicturePage implements OnInit {
   }
 
   takePicture() {
-    var video = <any>document.getElementById('video');
-    var canvas = <any>document.getElementById('canvas');
-    var context = canvas.getContext('2d');
+    var video = <any>document.getElementById("video");
+    var canvas = <any>document.getElementById("canvas");
+    var context = canvas.getContext("2d");
 
     context.drawImage(video, 0, 0, 1000, 1000);
-    localStorage.setItem('baltagram.post', JSON.stringify(new Post(canvas.toDataURL(), '', '')));
+    localStorage.setItem(
+      "baltagram.post",
+      JSON.stringify(new Post(canvas.toDataURL(), "", ""))
+    );
 
     video.classList.add("animated");
     video.classList.add("flash");
-
+    this.stop();
     setTimeout(() => {
-      this.navCtrl.navigateForward('/post');
+      this.navCtrl.navigateForward("/post");
     }, 1000);
+  }
+  async stop() {
+    var video = <any>document.getElementById("video");
+    console.log(video);
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({ video: { aspectRatio: 1 } })
+        .then(function (stream) {
+          video.srcObject = stream;
+          stream.getTracks().forEach(track => {
+            track.stop();
+          });
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
   }
 }
